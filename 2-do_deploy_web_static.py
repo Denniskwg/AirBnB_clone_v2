@@ -9,6 +9,9 @@ env.hosts = ["54.237.98.199", "100.26.152.160"]
 
 
 def do_deploy(archive_path):
+    """deploys code to remote servers
+        archive_path: path to an archive to deploy
+    """
     flag = 1
     if os.path.exists(archive_path):
         r = put(archive_path, "/tmp/web_static_20230406173415.tgz")
