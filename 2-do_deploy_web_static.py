@@ -18,11 +18,11 @@ def do_deploy(archive_path):
         if r.failed:
             flag = 0
         r = sudo("mkdir -p /data/web_static/releases/\
-web_static_20230406173415")
+web_static_20230406173415/")
         if r.failed:
             flag = 0
         r = sudo("tar -zxf /tmp/web_static_20230406173415\
-.tgz -C /data/web_static/releases/web_static_20230406173415")
+.tgz -C /data/web_static/releases/web_static_20230406173415/")
         if r.failed:
             flag = 0
         r = sudo("rm /tmp/web_static_20230406173415.tgz")
@@ -36,7 +36,7 @@ web_static_20230406173415")
 /web_static/")
         if r.failed:
             flag = 0
-        r = sudo("rm /data/web_static/current")
+        r = sudo("rm -rf /data/web_static/current")
         if r.failed:
             flag = 0
         r = sudo("ln -s /data/web_static/releases\
