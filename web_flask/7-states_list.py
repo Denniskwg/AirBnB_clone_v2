@@ -18,6 +18,7 @@ def states_list():
 
 
 @app.teardown_appcontext
+"""close db session"""
 def tear_down(exception):
     storage.close()
 
