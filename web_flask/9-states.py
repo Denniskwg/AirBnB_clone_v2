@@ -12,22 +12,19 @@ app = Flask(__name__)
 
 
 @app.route('/states', strict_slashes=False)
-def states_list():
-    """lists all States in storage"""
-    state_dict = storage.all(State)
-    return render_template('9-states.html', states=state_dict)
-
-
 @app.route('/states/<id>', strict_slashes=False)
-def state_id(id):
-    """lists all cities of a State in storage"""
+def states_list(id=None):
+    """lists all States in storage"""
     states = storage.all(State)
     state = {}
-    state_id = escape(id)
-    for stat in states.values():
-        if stat.id == state_id:
-            state['1'] = stat
-    return render_template('9-states.html', states=state)
+    if id is None:
+        state_id = None
+    else:
+        state_id = escape(id)
+        for stat in states.values():
+            if stat.id == state_id:
+                state['1'] = stat
+    return render_template('9-states.html', states=states, state_id=state_id, state=state)
 
 
 @app.teardown_appcontext
