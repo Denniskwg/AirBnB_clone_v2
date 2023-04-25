@@ -16,16 +16,14 @@ app = Flask(__name__)
 def states_list(id=None):
     """lists all States in storage"""
     states = storage.all(State)
-    state = {}
     if id is None:
-        state_id = None
-        return render_template('9-states.html', states=states, state_id=state_id)
+        return render_template('9-states.html', states=states)
     else:
         state_id = escape(id)
-        for stat in states.values():
-            if stat.id == state_id:
-                state['1'] = stat
-        return render_template('9-states.html', state_id=state_id, states=state)
+        for state in states.values():
+            if state.id == state_id:
+                return render_template('9-states.html', states=state)
+        return render_template('9-states.html')
 
 
 @app.teardown_appcontext
